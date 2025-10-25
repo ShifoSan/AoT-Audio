@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Website</title>
+    <style>
+        :root {
+            --color-primary: #3b82f6;
+            --color-secondary: #64748b;
+            --color-background: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #1e293b;
+            --color-text-secondary: #64748b;
+            --color-border: #e2e8f0;
+            --border-radius: 8px;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: var(--color-surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-border);
+        }
+
+        .card h2 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-border);
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🚀 Test Website</h1>
+            <p>A simple static webpage for testing purposes</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Welcome to the Test Environment</h2>
+                <div class="status">
+                    <div class="status-indicator"></div>
+                    <span>System Status: Online</span>
+                </div>
+                <p>This is a static test webpage created for development and testing purposes. It demonstrates basic HTML structure, CSS styling, and responsive design principles.</p>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Adapts to different screen sizes and devices</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern Styling</h3>
+                    <p>Clean and contemporary visual design</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Loading</h3>
+                    <p>Optimized for quick page load times</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Test Functions</h2>
+                <p>Click the button below to test basic JavaScript functionality:</p>
+                <br>
+                <button class="btn" onclick="testFunction()">Run Test</button>
+                <div id="test-result" style="margin-top: 1rem; padding: 1rem; background: #f0f9ff; border-radius: var(--border-radius); display: none;">
+                    <strong>Test Result:</strong> <span id="result-text"></span>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Test Website. Created for development testing.</p>
+        </footer>
+    </div>
+
+    <script>
+        function testFunction() {
+            const resultDiv = document.getElementById('test-result');
+            const resultText = document.getElementById('result-text');
+            
+            // Simulate a test operation
+            const timestamp = new Date().toLocaleString();
+            const randomNumber = Math.floor(Math.random() * 1000) + 1;
+            
+            resultText.textContent = `Test completed successfully at ${timestamp}. Random value: ${randomNumber}`;
+            resultDiv.style.display = 'block';
+            
+            // Add some visual feedback
+            resultDiv.style.animation = 'none';
+            setTimeout(() => {
+                resultDiv.style.animation = 'fadeIn 0.3s ease';
+            }, 10);
+        }
+
+        // Add fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Console log for testing
+        console.log('Test webpage loaded successfully!');
+        console.log('Current timestamp:', new Date().toISOString());
+    </script>
+</body>
+</html>
