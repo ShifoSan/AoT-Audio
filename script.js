@@ -53,12 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const muteBtn = playerElement.querySelector('.mute-btn');
         const progressBar = playerElement.querySelector('.progress');
         const volumeSlider = playerElement.querySelector('.volume-slider');
-        const trackTitle = playerElement.querySelector('.track-title');
         const shuffleBtn = playerElement.querySelector('.shuffle-btn');
         const repeatBtn = playerElement.querySelector('.repeat-btn');
         const downloadBtn = playerElement.querySelector('.download-btn');
         const canvas = playerElement.querySelector('.visualizer');
         const canvasCtx = canvas.getContext('2d');
+
+        const playlistContainer = playerElement.parentElement.querySelector('.playlist-container');
+        const playlistToggle = playlistContainer.querySelector('.playlist-toggle');
+        const playlistElement = playlistContainer.querySelector('.playlist');
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const source = audioCtx.createMediaElementSource(playerData.audio);
@@ -72,29 +75,24 @@ document.addEventListener('DOMContentLoaded', () => {
         function drawVisualizer() {
             requestAnimationFrame(drawVisualizer);
             analyser.getByteFrequencyData(dataArray);
-
             canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
             const radius = 50;
             const barWidth = 2;
             let angle = 0;
-
             for (let i = 0; i < bufferLength; i++) {
                 const barHeight = dataArray[i] / 2;
                 const x = centerX + radius * Math.cos(angle);
                 const y = centerY + radius * Math.sin(angle);
                 const xEnd = centerX + (radius + barHeight) * Math.cos(angle);
                 const yEnd = centerY + (radius + barHeight) * Math.sin(angle);
-
                 canvasCtx.strokeStyle = `hsl(${i / bufferLength * 360}, 100%, 50%)`;
                 canvasCtx.lineWidth = barWidth;
                 canvasCtx.beginPath();
                 canvasCtx.moveTo(x, y);
                 canvasCtx.lineTo(xEnd, yEnd);
                 canvasCtx.stroke();
-
                 angle += (Math.PI * 2) / bufferLength;
             }
         }
@@ -102,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
         function loadTrack(trackIndex) {
             const track = playerData.playlist[trackIndex];
             playerData.audio.src = track.src;
-            trackTitle.textContent = track.title;
         }
 
         function playTrack() {
@@ -127,6 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             loadTrack(playerData.currentTrack);
             playTrack();
+        }
+
+        function populatePlaylist() {
+            playlistElement.innerHTML = '';
+            playerData.playlist.forEach((track, index) => {
+                const li = document.createElement('li');
+                li.textContent = track.title;
+                li.dataset.index = index;
+                playlistElement.appendChild(li);
+            });
         }
 
         playPauseBtn.addEventListener('click', () => {
@@ -160,9 +167,26 @@ document.addEventListener('DOMContentLoaded', () => {
             link.click();
         });
 
+        playlistToggle.addEventListener('click', () => {
+            const isHidden = playlistElement.style.display === 'none';
+            playlistElement.style.display = isHidden ? 'block' : 'none';
+            playlistToggle.textContent = isHidden ? 'Hide Playlist' : 'Show Playlist';
+        });
+
+        playlistElement.addEventListener('click', (e) => {
+            if (e.target.tagName === 'LI') {
+                const trackIndex = parseInt(e.target.dataset.index, 10);
+                playerData.currentTrack = trackIndex;
+                loadTrack(trackIndex);
+                playTrack();
+            }
+        });
+
         playerData.audio.addEventListener('timeupdate', () => {
-            const progressPercent = (playerData.audio.currentTime / playerData.audio.duration) * 100;
-            progressBar.style.width = `${progressPercent}%`;
+            if (playerData.audio.duration) {
+                const progressPercent = (playerData.audio.currentTime / playerData.audio.duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+            }
         });
 
         playerData.audio.addEventListener('ended', nextTrack);
@@ -172,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         loadTrack(playerData.currentTrack);
+        populatePlaylist();
     });
 
     const copyright = document.querySelector('.copyright');

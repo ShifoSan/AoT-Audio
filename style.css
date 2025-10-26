@@ -1,8 +1,5 @@
 body {
-    background-image: url('Images/Webpage Background .jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
     color: white;
     font-family: sans-serif;
     margin: 0;
@@ -13,7 +10,7 @@ body {
     background-image: url('Images/Hero banner background .jpg');
     background-size: cover;
     background-position: center;
-    height: 50vh;
+    height: 30vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,6 +119,36 @@ footer {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.7);
 }
+
+.playlist-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.playlist-toggle {
+    margin-bottom: 10px;
+}
+
+.playlist {
+    list-style: none;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.playlist li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.playlist li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 
 @media (max-width: 768px) {
     .hero-banner {
