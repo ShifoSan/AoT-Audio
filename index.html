@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AoT Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero-banner">
+        <div class="hero-image"></div>
+        <h1>AoT Music</h1>
+    </header>
+
+    <main class="player-container">
+        <div class="player" id="openings-player">
+            <div class="hexagon">
+                <canvas class="visualizer"></canvas>
+                <div class="player-controls">
+                    <div class="track-info">
+                        <p class="track-title"></p>
+                    </div>
+                    <div class="buttons">
+                        <button class="play-pause-btn"></button>
+                        <button class="shuffle-btn"></button>
+                        <button class="repeat-btn"></button>
+                        <button class="mute-btn"></button>
+                        <button class="download-btn"></button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="volume-control">
+                        <input type="range" class="volume-slider">
+                    </div>
+                </div>
+            </div>
+            <h2>Openings</h2>
+        </div>
+        <div class="player" id="endings-player">
+            <div class="hexagon">
+                <canvas class="visualizer"></canvas>
+                <div class="player-controls">
+                    <div class="track-info">
+                        <p class="track-title"></p>
+                    </div>
+                    <div class="buttons">
+                        <button class="play-pause-btn"></button>
+                        <button class="shuffle-btn"></button>
+                        <button class="repeat-btn"></button>
+                        <button class="mute-btn"></button>
+                        <button class="download-btn"></button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="volume-control">
+                        <input type="range" class="volume-slider">
+                    </div>
+                </div>
+            </div>
+            <h2>Endings</h2>
+        </div>
+        <div class="player" id="special-theme-player">
+            <div class="hexagon">
+                <canvas class="visualizer"></canvas>
+                <div class="player-controls">
+                    <div class="track-info">
+                        <p class="track-title"></p>
+                    </div>
+                    <div class="buttons">
+                        <button class="play-pause-btn"></button>
+                        <button class="shuffle-btn"></button>
+                        <button class="repeat-btn"></button>
+                        <button class="mute-btn"></button>
+                        <button class="download-btn"></button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="volume-control">
+                        <input type="range" class="volume-slider">
+                    </div>
+                </div>
+            </div>
+            <h2>Special Theme</h2>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright"></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
